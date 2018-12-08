@@ -1,3 +1,5 @@
+import allure, pytest
+
 
 class Test_allure:
     def setup(self):
@@ -6,5 +8,8 @@ class Test_allure:
     def teardown(self):
         pass
 
-    def test_al(self):
-        assert 0
+    @pytest.mark.parametrize("a", [1, 2, 3])
+    @allure.step('我是测试步骤001')
+    def test_al(self, a):
+        allure.attach('描述', '我是测试步骤001的描述～～～')
+        assert a != 2
